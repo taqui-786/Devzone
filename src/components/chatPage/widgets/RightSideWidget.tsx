@@ -38,12 +38,7 @@ export function UserActivityWidget() {
       channel.unsubscribe()
     }
   }, [setOnlineUsersCount])
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setActiveUsers(prev => Math.floor(Math.random() * 10) + prev)
-  //   }, 5000)
-  //   return () => clearInterval(interval)
-  // }, [])
+  
 
   return (
     <Card className="bg-gray-800 border-0 overflow-hidden h-full">

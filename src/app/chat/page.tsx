@@ -5,7 +5,7 @@ import React from 'react'
 
  async function page() {
   const user:UserType  = await fetchUser()
-  
+  if(!user) return
   return (
     <>
     <ChatPageMain/>

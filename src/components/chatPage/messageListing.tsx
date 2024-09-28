@@ -1,9 +1,8 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useLike, useMessage } from "@/lib/store/message";
+import {  useMessage } from "@/lib/store/message";
 import { useUser } from "@/lib/store/user";
-import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { AnimatePresence, motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import {
@@ -187,8 +186,8 @@ function ListMessages() {
 
   /// LIKE -----------
   // Handle like/dislike action
-  const handleLike = (messageId: number, isLiked: boolean) => {
-    likeMessage(messageId, currentUserId);
+  const handleLike = (messageId: string, isLiked: boolean) => {
+    likeMessage(messageId, currentUserId as string);
     // Optionally, send this action to the backend to persist the like/dislike
     if (!isLiked) {
       supabaseClient
@@ -244,7 +243,7 @@ function ListMessages() {
               >
                 {message.sender?.id !== currentUserId && (
                   <Avatar className="h-6 w-6 mr-2">
-                    <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${encodeURIComponent(message.sender.email)}`} alt="DevZone" />
+                    <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${encodeURIComponent(message?.sender?.email as string)}` } alt="DevZone" />
                     <AvatarFallback>
 
                       {message.sender?.avatar || "Ti"}

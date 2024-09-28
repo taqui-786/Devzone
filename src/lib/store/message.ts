@@ -6,7 +6,7 @@ interface MessageState {
   addMessage: (message: MessageType, userId: string) => void;
   setMessages: (storedMessages: any[], userId: string) => void;
   setOptimisticId: (id: string) => void;
-  likeMessage: (messageId: number, userId: number, likeId?:string) => void;
+  likeMessage: (messageId: string, userId: string, likeId?:string) => void;
   dislikeMessage: (likeId:string) => void;
 }
 
@@ -22,6 +22,7 @@ export const useMessage = create<MessageState>()((set) => ({
     })),
 
   addMessage: (message, userId) =>
+    // @ts-ignore
     set((state) => {
       // Transforming the message before adding
 
@@ -30,7 +31,7 @@ export const useMessage = create<MessageState>()((set) => ({
         sender: message?.users,
 
         content: message.context,
-        timestamp: new Date(message?.created_at),
+        timestamp: new Date(message?.created_at as string),
         likes: message?.likes,
         isLiked: message?.likes?.some(
           (like) => like.message_id === message.id && userId === like.user_id
@@ -56,7 +57,7 @@ export const useMessage = create<MessageState>()((set) => ({
         timestamp: new Date(item.created_at),
         likes: item?.likes,
         isLiked: item.likes?.some(
-          (like) =>  like.user_id === userId
+          (like: MessageLikeType) =>  like.user_id === userId
         ) ,
         type: item.msg_type as "text" | "pdf" | "image" | "video",
         ...(item.msg_type !== "text" ? { fileUrl: "/placeholder.svg" } : {}),
