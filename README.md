@@ -1,6 +1,6 @@
 # DevZone
 
-![DevZone Logo]((https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3zpucufhdsybezokhjhl.jpeg))
+![DevZone Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3zpucufhdsybezokhjhl.jpeg)
 
 ## 🚧 Currently in Beta (Development) 🚧
 
