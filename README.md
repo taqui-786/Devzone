@@ -1,6 +1,6 @@
 # DevZone
 
-![DevZone Logo]([https://your-logo-url-here.com](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3zpucufhdsybezokhjhl.jpeg))
+![DevZone Logo](https://your-logo-url-here.com](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/3zpucufhdsybezokhjhl.jpeg)
 
 ## 🚧 Currently in Beta (Development) 🚧
 
@@ -82,3 +82,5 @@ Project Link: [https://github.com/taqui-786/Devzone](https://github.com/taqui-78
 ---
 
 ⭐️ If you find DevZone interesting or useful, please consider giving it a star on GitHub! ⭐️
+
+
