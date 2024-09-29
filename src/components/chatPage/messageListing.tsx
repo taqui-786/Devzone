@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import {  useMessage } from "@/lib/store/message";
+import { useMessage } from "@/lib/store/message";
 import { useUser } from "@/lib/store/user";
 import { AnimatePresence, motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -183,6 +183,7 @@ function ListMessages() {
       }
     }
   }, []);
+  console.log(messages);
 
   /// LIKE -----------
   // Handle like/dislike action
@@ -243,9 +244,13 @@ function ListMessages() {
               >
                 {message.sender?.id !== currentUserId && (
                   <Avatar className="h-6 w-6 mr-2">
-                    <AvatarImage src={`https://api.dicebear.com/6.x/initials/svg?seed=${encodeURIComponent(message?.sender?.email as string)}` } alt="DevZone" />
+                    <AvatarImage
+                      src={`https://api.dicebear.com/6.x/initials/svg?seed=${encodeURIComponent(
+                        message?.sender?.full_name as string
+                      )}`}
+                      alt="DevZone"
+                    />
                     <AvatarFallback>
-
                       {message.sender?.avatar || "Ti"}
                     </AvatarFallback>
                   </Avatar>

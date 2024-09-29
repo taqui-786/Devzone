@@ -28,7 +28,7 @@ export const useMessage = create<MessageState>()((set) => ({
 
       const transformedMessage = {
         id: message.id,
-        sender: message?.users,
+        sender: message?.users || message?.sender,
 
         content: message.context,
         timestamp: new Date(message?.created_at as string),
@@ -40,8 +40,9 @@ export const useMessage = create<MessageState>()((set) => ({
        
       };
 
+      const newMessages = [transformedMessage, ...state.messages];
       return {
-        messages: [...state.messages, transformedMessage],
+        messages: newMessages.sort((a, b) => new Date(a.timestamp as Date).getTime() - new Date(b.timestamp as Date).getTime()),
       };
     }),
 
@@ -61,7 +62,7 @@ export const useMessage = create<MessageState>()((set) => ({
         ) ,
         type: item.msg_type as "text" | "pdf" | "image" | "video",
         ...(item.msg_type !== "text" ? { fileUrl: "/placeholder.svg" } : {}),
-      })),
+      })).sort((a, b) => new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()),
      
       
     })),

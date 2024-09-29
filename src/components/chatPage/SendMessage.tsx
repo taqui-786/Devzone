@@ -30,7 +30,7 @@ function SendMessage() {
         created_at: new Date().toISOString(),
         msg_type: "text",
       };
-
+      
       addMessage(message, currentUser?.id as string);
       const res = await createMessage({
         context: newMessage,
@@ -43,6 +43,7 @@ function SendMessage() {
       }
     }
   };
+
   const handleSend = () => {
     sendMessage(newMessage);
     setNewMessage(""); // Clear the input field
