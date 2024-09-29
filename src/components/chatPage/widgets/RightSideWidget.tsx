@@ -8,6 +8,7 @@ import { Bell, UserPlus, Github, Twitter, Mail } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { supabaseClient } from '@/lib/supabase/supabaseClient'
 import { useUser } from '@/lib/store/user'
+import { askGemini } from '@/lib/supabase/geminiAi'
 
 export function UserActivityWidget() {
   const [recentJoins, setRecentJoins] = useState([
@@ -39,7 +40,18 @@ export function UserActivityWidget() {
     }
   }, [setOnlineUsersCount])
   
-
+const askAi = async() =>{
+  try {
+    const res = await askGemini("What is computer")
+    if(res){
+      console.log("Ai Respoonse -> ", res);
+      
+    }
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
   return (
     <Card className="bg-gray-800 border-0 overflow-hidden h-full">
       <CardContent className="p-4 space-y-4 flex flex-col justify-evenly h-full">
@@ -77,7 +89,9 @@ export function UserActivityWidget() {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.3, type: "spring", stiffness: 500, damping: 30 }}
+            onClick={askAi}
           >
+
             TaquiImam
           </motion.div>
         </motion.div>

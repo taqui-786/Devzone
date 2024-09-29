@@ -6,6 +6,7 @@ import { Send } from "lucide-react";
 import { useUser } from "@/lib/store/user";
 import { useMessage } from "@/lib/store/message";
 import { createMessage } from "@/lib/supabase/Action";
+import { v4 as uuidv4 } from 'uuid';
 interface Message {
   id: number;
   sender: string;
@@ -22,17 +23,21 @@ function SendMessage() {
   const [newMessage, setNewMessage] = useState("");
   const sendMessage = async (newMessage: string) => {
     if (newMessage.trim()) {
+      const newMessageUuid = uuidv4();
       const message: MessageType = {
-        id: Date.now().toString(), // Use a timestamp as a simple unique ID
+        id: newMessageUuid, // Use a timestamp as a simple unique ID
         users: { id: currentUser?.id, avatar: currentUser?.avatar,full_name: currentUser?.full_name},
         send_by: currentUser?.id,
         context: newMessage,
         created_at: new Date().toISOString(),
+        likes:[],
+        
         msg_type: "text",
       };
       
       addMessage(message, currentUser?.id as string);
       const res = await createMessage({
+        id:newMessageUuid,
         context: newMessage,
         msg_type: "text",
         send_by: currentUser?.id,

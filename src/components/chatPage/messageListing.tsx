@@ -11,7 +11,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "../ui/tooltip";
-import { ArrowDown, FileText, Heart, MessageSquare, Share } from "lucide-react";
+import { ArrowDown, CornerDownRight, FileText, Heart, MessageSquare, Share } from "lucide-react";
 import { format, isToday, isYesterday } from "date-fns";
 import { supabaseClient } from "@/lib/supabase/supabaseClient";
 
@@ -144,6 +144,7 @@ function ListMessages() {
         "postgres_changes",
         { event: "INSERT", schema: "public", table: "likes" },
         (payload) => {
+          console.log(payload);
           if (payload?.new?.user_id !== currentUserId) {
             likeMessage(
               payload?.new?.message_id,
@@ -166,7 +167,7 @@ function ListMessages() {
       messageSubscription.unsubscribe();
       likeSubscription.unsubscribe();
     };
-  }, [currentUserId, addMessage, messages]);
+  }, [currentUserId, addMessage, messages, likeMessage]);
 
   const handleScroll = useCallback(() => {
     const scrollContainer = scrollAreaRef.current;
@@ -183,7 +184,6 @@ function ListMessages() {
       }
     }
   }, []);
-  console.log(messages);
 
   /// LIKE -----------
   // Handle like/dislike action
@@ -208,6 +208,11 @@ function ListMessages() {
         });
     }
   };
+
+
+
+
+
   return (
     <div
       className="flex flex-col overflow-y-auto flex-1 p-2 h-full"
@@ -352,17 +357,25 @@ function ListMessages() {
         ))}
 
         {userScrolled && (
-          <div className="absolute bottom-20 m-auto right-0 left-0 h-10 flex items-center justify-center z-50 bg-transparent">
+          <div className="fixed bottom-24 left-1/2 transform -translate-x-1/2 z-50">
             <button
-              className="focus:outline-none text-purple-600 hover:text-white bg-gray-200 hover:bg-purple-600 p-2 rounded-full"
+              className="bg-gray-800 text-white px-4 py-2 rounded-full shadow-lg flex items-center space-x-2"
               onClick={scrollToBottom}
             >
               {notifications > 0 ? (
-                <span className="text-sm font-semibold">
-                  New {notifications} messages
-                </span>
+                <>
+                  <span className="text-sm font-semibold">
+                    {notifications} new message{notifications > 1 ? "s" : ""}
+                  </span>
+                  <ArrowDown className="h-4 w-4" />
+                </>
               ) : (
-                <ArrowDown className="h-6 w-6" />
+                <>
+                  <span className="text-sm font-semibold">
+                    Scroll to bottom
+                  </span>
+                  <ArrowDown className="h-4 w-4" />
+                </>
               )}
             </button>
           </div>

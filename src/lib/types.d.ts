@@ -17,11 +17,12 @@ type MessageType = {
   created_at?: string;
   users?: UserType;
   likes?:MessageLikeType[];
+  replies?: MessageReplyType[]
 };
 type MessageLikeType = {
   id?: string;
   message_id?: string;
-  user_id?: string;
+  user_id?: string ;
   created_at?: string;
 };
 interface MessageOrganisedType {
@@ -30,8 +31,19 @@ interface MessageOrganisedType {
   content: string;
   timestamp?: Date | number;
   likes: MessageLikeType[];
-  isLiked: boolean;
   type: "text" | "pdf" | "image" | "video";
   fileUrl?: string;
+  replies?: MessageReplyType[]
 
 }
+type MessageReplyType = {
+  id?: string;
+  message_id?: string;
+  reply_to?: string;
+  context?: string;
+  send_by?: string;
+  msg_type?: "text" | "pdf" | "image" | "video";
+  is_edited?: boolean;
+  created_at?: string;
+  sender?: UserType;
+};
