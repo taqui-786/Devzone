@@ -19,7 +19,7 @@ import LogoutBtn from "../authBtn/LogoutBtn"
 
 export default function ChatPageMain() {
   return (
-   <>
+   
     <div className="flex h-screen bg-gray-900 text-white">
       {/* Left Widget Area */}
       <div className="w-1/4 p-4 space-y-4 hidden lg:block">
@@ -61,7 +61,7 @@ export default function ChatPageMain() {
         <UserActivityWidget/>
       </div>
     </div>
-   </>
+   
   )
 }
 // <CodeChat/>

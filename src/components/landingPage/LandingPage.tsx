@@ -11,14 +11,14 @@ export default function LandingPageComponent() {
   return (
     <AnimatedBeam>
 <div className="min-h-screen flex items-center justify-center bg-transparent text-white p-4">
-      <div className="max-w-4xl mx-auto text-center bg-opacity-10 backdrop-blur-sm">
+      <div className="max-w-4xl mx-auto text-center  sm:bg-opacity-10 sm:backdrop-blur-sm   ">
         <motion.div 
           className="flex flex-col items-center justify-center mb-6 relative"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="flex items-center justify-center mb-4">
+          <div className="flex items-center justify-center mb-10 sm:mb-4">
             <Code2 className="w-8 h-8 sm:w-12 sm:h-12 mr-2 sm:mr-4 text-blue-400" />
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">Where Code Meets Community</h1>
             <Users className="w-8 h-8 sm:w-12 sm:h-12 ml-2 sm:ml-4 text-green-400" />
@@ -33,20 +33,20 @@ export default function LandingPageComponent() {
           </motion.div>
         </motion.div>
         <motion.p 
-          className="text-base sm:text-lg md:text-xl mb-8 text-gray-300"
+          className="text-sm sm:text-lg md:text-xl mb-11  sm:mb-8 text-gray-300"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <span className="flex items-center justify-center flex-wrap">
-            <Zap className="w-5 h-5 sm:w-6 sm:h-6 mr-2 text-yellow-400" />
+          <span className="flex items-center justify-center flex-wrap my-2 sm:my-0">
+            <Zap className="w-5 h-5 sm:w-6 sm:h-6 mr-2 hidden sm:block text-yellow-400" />
             DevZone is the ultimate chat platform for developers
-            <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 mx-2 text-purple-400" />
+            <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 mx-2 hidden sm:block text-purple-400" />
           </span>
           to connect, collaborate, and code together. Join the conversation and level up your coding journey.
         </motion.p>
         <motion.div 
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8"
+          className="grid grid-cols-4 gap-4 mb-10 sm:mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
