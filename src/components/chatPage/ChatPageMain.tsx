@@ -20,7 +20,7 @@ import LogoutBtn from "../authBtn/LogoutBtn"
 export default function ChatPageMain() {
   return (
    
-    <div className="flex h-screen bg-gray-900 text-white">
+    <div className="flex h-full bg-gray-900 text-white">
       {/* Left Widget Area */}
       <div className="w-1/4 p-4 space-y-4 hidden lg:block">
         <Card className="bg-gray-800 shadow-lg p-4 h-1/2 border-0">

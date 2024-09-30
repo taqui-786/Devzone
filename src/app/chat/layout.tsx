@@ -6,7 +6,7 @@ function layout({
     children: React.ReactNode;
   }>) {
   return (
-    <main className='min-h-dvh w-screen'>
+    <main className='h-dvh '>
         {children}
     </main>
   )
